@@ -1,0 +1,5 @@
+{
+  "test": "npx jest ./src",
+  "watch": "npx jest ./src --detectOpenHandles --forceExit --watch",
+  "lint": "npx eslint ./src"
+}
