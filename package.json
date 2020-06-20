@@ -1,7 +1,32 @@
 {
-  "name": "launchpad",
+  "name": "@brightleaf/launchpad",
+  "description": "CLI tool and libary to deply code to AWS",
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
-    "test": "echo \"This is a placeholder\" && exit 0"
+    "test": "isom test",
+    "lint": "isom lint",
+    "watch": "isom watch"
   },
-  "version": "1.0.0"
+  "bin": {
+    "liftoff": "./bin/index.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@kev_nz/eslint-config": "^5.2.1",
+    "@kev_nz/publisher": "^4.0.1",
+    "aws-sdk-mock": "^5.1.0",
+    "eslint": "^7.0.0",
+    "isom": "^1.0.0",
+    "jest": "^26.0.1"
+  },
+  "dependencies": {
+    "@auth0/s3": "^1.0.0",
+    "@kev_nz/async-tools": "^1.2.3",
+    "@zeit/ncc": "^0.22.2",
+    "archiver": "^4.0.1",
+    "aws-sdk": "^2.682.0",
+    "commander": "^5.1.0",
+    "js-yaml": "^3.13.1"
+  }
 }
