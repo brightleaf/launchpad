@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The YML Parser Module should parse a yml file 1`] = `
+Object {
+  "functions": Object {
+    "firstMethod": Object {
+      "description": "Something awesome.",
+      "events": Array [
+        Object {
+          "http": Object {
+            "cors": true,
+            "method": "GET",
+            "path": "/sample",
+          },
+        },
+      ],
+      "handler": "sample/index.first",
+    },
+    "secondMethod": Object {
+      "description": "Something else that is awesome.",
+      "events": Array [
+        Object {
+          "http": Object {
+            "cors": true,
+            "method": "GET",
+            "path": "/sample",
+          },
+        },
+      ],
+      "handler": "sample/index.second",
+    },
+  },
+  "provider": Object {
+    "name": "aws",
+    "runtime": "nodejs12.x",
+  },
+  "service": "launchpad",
+}
+`;

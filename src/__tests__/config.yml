@@ -1,0 +1,23 @@
+service: launchpad
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  firstMethod:
+    handler: sample/index.first
+    description: Something awesome.
+    events:
+      - http:
+          path: /sample
+          method: GET
+          cors: true
+  secondMethod:
+    handler: sample/index.second
+    description: Something else that is awesome.
+    events:
+      - http:
+          path: /sample
+          method: GET
+          cors: true
