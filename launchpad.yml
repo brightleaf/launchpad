@@ -1,0 +1,31 @@
+app: Launchpad
+
+buildDir: ./build
+
+env:
+  dev:
+    bucket: brightleaf-dev.bucket
+  test:
+    bucket: brightleaf-test.bucket
+
+functions:
+  hello:
+    role: serverless-Lambda-Basic
+    runtime: nodejs12.x
+    handler: example/functions/handler.hello
+    name: Brightleaf-HelloHandler
+    events:
+      - http:
+          path: /hello
+          method: get
+          cors: true
+  goodbye:
+    role: serverless-Lambda-Basic
+    runtime: nodejs12.x
+    handler: example/functions/handler.goodbye
+    name: Brightleaf-GoodbyeHandler
+    events:
+      - http:
+          path: /goodbye
+          method: get
+          cors: true
