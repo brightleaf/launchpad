@@ -11,6 +11,11 @@
   "bin": {
     "launchpad": "./bin/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brightleaf/launchpad.git"
+  },
+  "homepage": "https://github.com/brightleaf/launchpad",
   "license": "MIT",
   "devDependencies": {
     "@kev_nz/eslint-config": "^5.2.1",
