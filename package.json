@@ -9,7 +9,7 @@
     "watch": "isom watch"
   },
   "bin": {
-    "liftoff": "./bin/index.js"
+    "launchpad": "./bin/index.js"
   },
   "license": "MIT",
   "devDependencies": {

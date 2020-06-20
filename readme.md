@@ -5,10 +5,10 @@ CLI and library for deploying code to AWS S3 and AWS Lambda
 ```
 npm install @brightleaf/launchpad --save-dev
 npm run build
-npx liftoff upload
+npx launchpad upload
 npm run build:lambdas
-npx liftoff upload ???
-npx liftoff promote
+npx launchpad upload ???
+npx launchpad promote
 ```
 
 Example launchpad.yml
