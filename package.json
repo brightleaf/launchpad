@@ -6,7 +6,9 @@
   "scripts": {
     "test": "isom test",
     "lint": "isom lint",
-    "watch": "isom watch"
+    "watch": "isom watch",
+    "postversion": "npm publish --access=public",
+    "postpublish": "git push origin --all --follow-tags"
   },
   "bin": {
     "launchpad": "./bin/index.js"
