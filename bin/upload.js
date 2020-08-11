@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const fs = require('fs')
 const path = require('path')
+const fs = require('fs-extra')
 const program = require('commander') // include commander in git clone of commander repo
 const yaml = require('js-yaml')
 const uploadDirectory = require('../src/upload-dir')
@@ -14,27 +14,38 @@ program
   .option('-f', '--file', 'upload a particular file')
   .action(async (cmd, opts) => {
     try {
-      console.info('opts', opts)
+      console.info('Prepare to upload')
 
       const doc = yaml.safeLoad(
         fs.readFileSync(path.join(process.cwd(), 'launchpad.yml'), 'utf8')
       )
-      console.info('The DOC', doc)
+
       const { app, buildDir } = doc
       const { bucket } = doc.env[process.env.NODE_ENV || 'dev']
-      console.info('build dir', buildDir)
-      console.info('bucket head', bucket)
 
       if (opts) {
-        console.info('the options - expect file or files to upload')
-        console.info('opts', opts)
-        await upload(opts[0], bucket) // each this
+        if (opts[0].indexOf('.zip') > 0) {
+          console.info('Upload file', opts[0])
+          await upload(opts[0], bucket)
+        } else {
+          // assume directory
+          console.info('Upload directory', opts[0])
+          await uploadDirectory(opts[0], bucket)
+        }
       } else {
-        await upload(`${app}.zip`, bucket)
-        // await uploadDirectory(buildDir, bucket)
+        const exists = await fs.pathExists(
+          path.resolve(process.cwd(), `${app}.zip`)
+        )
+        if (exists) {
+          console.info('Upload file', `${app}.zip`)
+          await upload(`${app}.zip`, bucket)
+        } else {
+          console.info('Upload directory', buildDir)
+          await uploadDirectory(buildDir, bucket)
+        }
       }
     } catch (e) {
-      console.error('NOPE', e)
+      console.error('Failed to upload', e)
     }
   })
   .parseAsync(process.argv)

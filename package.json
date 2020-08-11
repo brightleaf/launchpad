@@ -32,6 +32,7 @@
     "archiver": "^4.0.1",
     "aws-sdk": "^2.682.0",
     "commander": "^5.1.0",
+    "fs-extra": "^9.0.1",
     "js-yaml": "^3.13.1"
   }
 }

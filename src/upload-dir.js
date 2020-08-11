@@ -17,7 +17,7 @@ module.exports = (directoryToUpload, bucket) => {
   }
 
   return new Promise((resolve, reject) => {
-    const uploader = client.uploadFile(params)
+    const uploader = client.uploadDir(params)
 
     uploader.on('error', function(err) {
       console.error('unable to sync:', err.stack)
