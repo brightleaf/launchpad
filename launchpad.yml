@@ -5,6 +5,7 @@ buildDir: ./build
 env:
   dev:
     bucket: brightleaf-dev.bucket
+    distribution: ZZ231111
   test:
     bucket: brightleaf-test.bucket
 

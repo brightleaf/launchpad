@@ -12,6 +12,14 @@ program
   .alias('u')
 
 program
+  .version(pkg.version)
+  .description(pkg.description)
+  .command('invalidate [distID]', 'Invalidate CloudFront Distribution', {
+    executableFile: 'invalidate',
+  })
+  .alias('i')
+
+program
   .command('promote [query]', 'Promote lambda function', {
     executableFile: 'promote',
   })
