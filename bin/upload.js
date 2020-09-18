@@ -2,20 +2,17 @@
 
 const path = require('path')
 const fs = require('fs-extra')
-const program = require('commander') // include commander in git clone of commander repo
+const program = require('commander')
 const yaml = require('js-yaml')
 const uploadDirectory = require('../src/upload-dir')
 const upload = require('../src/upload')
 // Get document, or throw exception on error
 
 program
-  .option('--no-dir', 'Not a directory')
-  .option('-d, --dir', 'the target to upload is a directory')
-  .option('-f', '--file', 'upload a particular file')
+  .option('--prefix <prefix>', 'the prefix to upload to')
   .action(async (cmd, opts) => {
     try {
       console.info('Prepare to upload')
-
       const doc = yaml.safeLoad(
         fs.readFileSync(path.join(process.cwd(), 'launchpad.yml'), 'utf8')
       )
@@ -30,7 +27,7 @@ program
         } else {
           // assume directory
           console.info('Upload directory', opts[0])
-          await uploadDirectory(opts[0], bucket)
+          await uploadDirectory(opts[0], bucket, cmd.prefix)
         }
       } else {
         const exists = await fs.pathExists(
@@ -41,7 +38,7 @@ program
           await upload(`${app}.zip`, bucket)
         } else {
           console.info('Upload directory', buildDir)
-          await uploadDirectory(buildDir, bucket)
+          await uploadDirectory(buildDir, bucket, cmd.prefix)
         }
       }
     } catch (e) {
@@ -49,7 +46,3 @@ program
     }
   })
   .parseAsync(process.argv)
-
-console.info('is dir', program.dir)
-
-console.log('end')

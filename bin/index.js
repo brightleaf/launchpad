@@ -3,9 +3,11 @@
 const program = require('commander')
 const pkg = require('../package.json')
 
+program.storeOptionsAsProperties(true).passCommandToAction(true)
 program
   .version(pkg.version)
   .description(pkg.description)
+  .option('-p, --prefix', 'the prefix to upload to')
   .command('upload [name]', 'upload a directory or file', {
     executableFile: 'upload',
   })
@@ -38,19 +40,3 @@ program
     console.info('Prepare for liftoff')
   })
   .parse(process.argv)
-
-// here .command() is invoked with a description,
-// and no .action(callback) calls to handle sub-commands.
-// this tells commander that you're going to use separate
-// executables for sub-commands, much like git(1) and other
-// popular tools.
-
-// here only ./pm-install(1) is implemented, however you
-// would define ./pm-search(1) and ./pm-list(1) etc.
-
-// Try the following:
-//   ./examples/pm
-//   ./examples/pm help install
-//   ./examples/pm install -h
-//   ./examples/pm install foo bar baz
-//   ./examples/pm install foo bar baz --force

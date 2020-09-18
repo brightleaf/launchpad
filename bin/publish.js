@@ -14,16 +14,14 @@ program
   .option('-f', '--file', 'upload a particular file')
   .action(async (cmd, opts) => {
     try {
-      console.info('opts', opts)
+      console.info('Publish')
 
       const doc = yaml.safeLoad(
         fs.readFileSync(path.join(process.cwd(), 'launchpad.yml'), 'utf8')
       )
-      console.info('The DOC', doc)
+
       const { buildDir } = doc
       const { bucket } = doc.env[process.env.NODE_ENV || 'dev']
-      console.info('build dir', buildDir)
-      console.info('bucket head', bucket)
 
       const bucketExists = await bucketCheck(bucket)
 
@@ -33,9 +31,6 @@ program
     } catch (e) {
       console.error('NOPE', e)
     }
+    console.info('Publish complete')
   })
   .parseAsync(process.argv)
-
-console.info('is dir', program.dir)
-
-console.log('end')

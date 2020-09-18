@@ -1,7 +1,7 @@
 const path = require('path')
 const s3 = require('@auth0/s3')
 
-module.exports = (file, bucket) => {
+module.exports = (file, bucket, prefix) => {
   const ZIP_FILE = file
 
   const client = s3.createClient({
@@ -19,7 +19,9 @@ module.exports = (file, bucket) => {
       Key: ZIP_FILE,
     },
   }
-  console.info('the params', params)
+  if (prefix) {
+    params.s3Params.Prefix = `${prefix}/`
+  }
   return new Promise((resolve, reject) => {
     const uploader = client.uploadFile(params)
 

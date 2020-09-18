@@ -1,6 +1,6 @@
 const s3 = require('@auth0/s3')
 
-module.exports = (directoryToUpload, bucket) => {
+module.exports = (directoryToUpload, bucket, prefix) => {
   const client = s3.createClient({
     s3Options: {
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -14,6 +14,10 @@ module.exports = (directoryToUpload, bucket) => {
     s3Params: {
       Bucket: bucket,
     },
+  }
+
+  if (prefix) {
+    params.s3Params.Prefix = `${prefix}/`
   }
 
   return new Promise((resolve, reject) => {

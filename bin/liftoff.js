@@ -57,7 +57,3 @@ program
     }
   })
   .parseAsync(process.argv)
-
-console.info('is dir', program.dir)
-
-console.log('end')

@@ -26,7 +26,6 @@ program
     } catch (e) {
       console.error('Failed to upload', e)
     }
+    console.info('Invalidate complete')
   })
   .parseAsync(process.argv)
-
-console.log('end')
