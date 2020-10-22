@@ -11,7 +11,7 @@ module.exports = (directoryToUpload, bucket, prefix, deleteRemoved) => {
   })
   const params = {
     localDir: directoryToUpload,
-    deleteRemoved: deleteRemoved,
+    deleteRemoved: !deleteRemoved,
     s3Params: {
       Bucket: bucket,
     },
