@@ -1,7 +1,7 @@
 {
   "name": "@brightleaf/launchpad",
   "description": "CLI tool and libary to deply code to AWS",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": false,
   "scripts": {
     "test": "isom test",
