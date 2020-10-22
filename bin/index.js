@@ -8,6 +8,7 @@ program
   .version(pkg.version)
   .description(pkg.description)
   .option('-p, --prefix', 'the prefix to upload to')
+  .option('-s, --safe', 'do not delete')
   .command('upload [name]', 'upload a directory or file', {
     executableFile: 'upload',
   })

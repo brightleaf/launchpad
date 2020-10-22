@@ -10,6 +10,7 @@ const upload = require('../src/upload')
 
 program
   .option('--prefix <prefix>', 'the prefix to upload to')
+  .option('-s, --safe', 'Do not delete')
   .action(async (cmd, opts) => {
     try {
       console.info('Prepare to upload')
@@ -27,7 +28,7 @@ program
         } else {
           // assume directory
           console.info('Upload directory', opts[0])
-          await uploadDirectory(opts[0], bucket, cmd.prefix)
+          await uploadDirectory(opts[0], bucket, cmd.prefix, cmd.safe)
         }
       } else {
         const exists = await fs.pathExists(
@@ -38,7 +39,7 @@ program
           await upload(`${app}.zip`, bucket)
         } else {
           console.info('Upload directory', buildDir)
-          await uploadDirectory(buildDir, bucket, cmd.prefix)
+          await uploadDirectory(buildDir, bucket, cmd.prefix, cmd.safe)
         }
       }
     } catch (e) {

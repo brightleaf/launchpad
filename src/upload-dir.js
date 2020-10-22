@@ -1,6 +1,7 @@
 const s3 = require('@auth0/s3')
 
-module.exports = (directoryToUpload, bucket, prefix) => {
+module.exports = (directoryToUpload, bucket, prefix, deleteRemoved) => {
+ 
   const client = s3.createClient({
     s3Options: {
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -10,7 +11,7 @@ module.exports = (directoryToUpload, bucket, prefix) => {
   })
   const params = {
     localDir: directoryToUpload,
-    deleteRemoved: true,
+    deleteRemoved: deleteRemoved,
     s3Params: {
       Bucket: bucket,
     },
